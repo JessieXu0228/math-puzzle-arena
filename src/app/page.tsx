@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { BookOpen, Brain, Trophy, QrCode } from 'lucide-react'
+import { BookOpen, Brain, Trophy, QrCode, Smartphone, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
             数学谜题打擂台
           </h1>
           <p className="text-2xl text-muted-foreground mb-2">
-            来出个题，来破个局
+            来出个题，来解个谜
           </p>
           <p className="text-sm text-muted-foreground">
             扫描下方二维码，参与数学谜题挑战！
@@ -48,9 +49,29 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <p className="text-center text-sm text-muted-foreground mt-4">
-                扫描二维码打开页面
-              </p>
+
+              {/* 提示信息 */}
+              <Alert className="mt-4 border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20">
+                <Smartphone className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                <AlertTitle className="text-sm font-semibold text-yellow-800 dark:text-yellow-200">
+                  手机扫码提示
+                </AlertTitle>
+                <AlertDescription className="text-xs text-yellow-700 dark:text-yellow-300">
+                  当前二维码指向 localhost，手机无法访问。请按以下步骤操作：
+                  <ol className="list-decimal list-inside mt-2 space-y-1">
+                    <li>确保手机和电脑在同一 WiFi 网络</li>
+                    <li>查看电脑的局域网 IP 地址</li>
+                    <li>手动在浏览器输入：http://[电脑IP]:5000</li>
+                  </ol>
+                </AlertDescription>
+              </Alert>
+
+              <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <p className="text-xs text-blue-700 dark:text-blue-300 flex items-center gap-2">
+                  <Globe className="h-4 w-4 flex-shrink-0" />
+                  <span>如果部署到公网服务器，请修改脚本中的 URL 重新生成二维码</span>
+                </p>
+              </div>
             </CardContent>
           </Card>
 
